@@ -62,8 +62,6 @@
                                     @endif
                                 @endif
                             </div>
-
-
                         </div>
                         <div class="card-body">
                             <h5 class="card-title">{{ $post->caption }}</h5>
@@ -84,35 +82,23 @@
                                 @endif
                             @endif
                         </a>
-                        <div class="d-flex align-items-center justify-content-between w-100 mb-2 mt-3">
-                            <div class="d-flex align-items-center w-100 justify-content-around">
-                                <div class="pr-3">
-                                    <a href="{{ route('comments.index', $post) }}" class="text-decoration-none"
-                                        style="font-family: 'Russo One', sans-serif; font-size: 1rem; margin-left: 10px; color: #3ABEFE;">
-                                        {{ $post->comments->count() }} Comments
-                                        <i class="far fa-comment"></i>
-                                    </a>
-                                </div>
-                                <div class="pr-3">
-                                    <a href="{{ route('posts.show', $post) }}" class="text-decoration-none"
-                                        style="font-family: 'Russo One', sans-serif; font-size: 1rem; margin-left: 10px; color: #3ABEFE;">
-                                        3 Likes
-                                        <i class="far fa-heart"></i>
-                                    </a>
-                                </div>
-                                <div class="pr-3">
-                                    <a href="{{ route('posts.show', $post) }}" class="text-decoration-none"
-                                        style="font-family: 'Russo One', sans-serif; font-size: 1rem; margin-left: 10px; color: #3ABEFE;">
-                                        3 Shares
-                                        <i class="far fa-paper-plane"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
+                        @include('posts.partials.postActions')
                     </div>
                 @endforeach
-
+                {{ $posts->links() }}
             </div>
         </div>
     </div>
+    <script>
+        function saveScrollPosition() {
+            sessionStorage.setItem('scrollPosition', window.pageYOffset);
+        }
+        window.onload = function() {
+            var scrollPosition = sessionStorage.getItem('scrollPosition');
+            if (scrollPosition !== null) {
+                window.scrollTo(0, scrollPosition);
+                sessionStorage.removeItem('scrollPosition');
+            }
+        }
+    </script>
 @endsection

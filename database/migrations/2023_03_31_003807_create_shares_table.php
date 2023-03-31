@@ -20,7 +20,6 @@ return new class extends Migration
             $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
             $table->unsignedBigInteger('share_id');
             $table->foreign('share_id')->references('id')->on('posts')->onDelete('cascade');
-
             $table->timestamps();
         });
     }

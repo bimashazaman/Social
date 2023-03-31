@@ -2,23 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Likes;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LikesController extends Controller
 {
-    public function store(Request $request)
+    public function like($id)
     {
-        $request->user()->likes()->create([
-            'post_id' => $request->post_id,
-        ]);
-
-        return back();
+        $like = new Likes();
+        $like->user_id = Auth::user()->id;
+        $like->post_id = $id;
+        $like->save();
+        return redirect()->back();
     }
 
-    public function destroy(Request $request, $id)
+    public function unlike($id)
     {
-        $request->user()->likes()->where('post_id', $id)->delete();
-
-        return back();
+        $like = Likes::where('post_id', $id)->where('user_id', Auth::user()->id)->first();
+        $like->delete();
+        return redirect()->back();
     }
 }

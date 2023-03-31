@@ -125,4 +125,19 @@ class PostController extends Controller
 
         return redirect()->route('posts.index')->with('success', 'Post deleted successfully.');
     }
+
+    public function deleteAll(Request $request)
+    {
+        $ids = $request->ids;
+        Post::whereIn('id', explode(",", $ids))->delete();
+        return response()->json(['success' => "Posts Deleted successfully."]);
+    }
+
+    //search
+    public function search(Request $request)
+    {
+        $search = $request->get('search');
+        $posts = Post::where('caption', 'like', '%' . $search . '%')->paginate(60);
+        return view('posts.index', compact('posts'));
+    }
 }

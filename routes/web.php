@@ -44,6 +44,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/comments/{post_id}', [CommentController::class, 'index'])->name('comments.index');
     Route::post('/comments/store/{post_id}', [CommentController::class, 'store'])->name('comments.store');
     Route::delete('/comments/{id}', [CommentController::class, 'destroy'])->name('comments.destroy');
+
+    //likes
+    Route::post('/like/{post_id}', [App\Http\Controllers\LikesController::class, 'like'])->name('posts.likes');
+    Route::post('/unlike/{post_id}', [App\Http\Controllers\LikesController::class, 'unlike'])->name('posts.unlike');
 });
 
 
