@@ -89,14 +89,13 @@
                                 <div class="pr-3">
                                     <a href="{{ route('comments.index', $post) }}" class="text-decoration-none"
                                         style="font-family: 'Russo One', sans-serif; font-size: 1rem; margin-left: 10px; color: #3ABEFE;">
-                                        3 Comments
+                                        {{ $post->comments->count() }} Comments
                                         <i class="far fa-comment"></i>
                                     </a>
                                 </div>
                                 <div class="pr-3">
                                     <a href="{{ route('posts.show', $post) }}" class="text-decoration-none"
                                         style="font-family: 'Russo One', sans-serif; font-size: 1rem; margin-left: 10px; color: #3ABEFE;">
-
                                         3 Likes
                                         <i class="far fa-heart"></i>
                                     </a>

@@ -10,7 +10,7 @@
                 <br>
                 <br>
                 <h2>Comments</h2>
-                <div class="card">
+                <div class="card" style="background-color: #141A29; color: #3ABEFE;">
                     <div class="row mt-4">
                         <div class="col-md-12">
                             <form action="{{ route('comments.store', $post) }}" method="POST" enctype="multipart/form-data"
@@ -18,7 +18,7 @@
                                 @csrf
                                 <div class="form-group">
                                     <textarea name="comment" id="comment" rows="3" class="form-control @error('comment') is-invalid @enderror"
-                                        placeholder="Type your comment"></textarea>
+                                        style="background-color: #141A29; color: #3ABEFE;" placeholder="Type your comment"></textarea>
                                     @error('comment')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -67,7 +67,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <br>
+                                <br>
+                                <button type="submit" class="btn btn-primary btn-block">Submit</button>
                             </form>
                         </div>
                     </div>
