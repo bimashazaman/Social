@@ -22,7 +22,7 @@ class PostController extends Controller
     {
         $request->validate([
             'caption' => 'nullable|string',
-            'media' => 'nullable|file',
+            'media.*' => 'nullable|file',
             'status' => 'nullable|string',
         ]);
 
@@ -31,15 +31,20 @@ class PostController extends Controller
             'status' => $request->get('status', 'active'),
             'user_id' => auth()->user()->id,
         ]);
+
         $uploadsPath = public_path('uploads');
         if (!file_exists($uploadsPath)) {
             mkdir($uploadsPath, 0777, true);
         }
+
         if ($request->hasFile('media')) {
-            $file = $request->file('media');
-            $fileName = time() . '.' . $file->getClientOriginalExtension();
-            $file->move($uploadsPath, $fileName);
-            $post->media = $fileName;
+            $media = [];
+            foreach ($request->file('media') as $file) {
+                $fileName = time() . '_' . $file->getClientOriginalName();
+                $file->move($uploadsPath, $fileName);
+                $media[] = $fileName;
+            }
+            $post->media = implode(',', $media);
         }
 
         $post->save();
@@ -48,27 +53,32 @@ class PostController extends Controller
     }
 
 
+
     public function update(Request $request, $id)
     {
         $request->validate([
             'caption' => 'nullable|string',
-            'media' => 'nullable|file|mimes:jpeg,png,mp4', // Add file validation rules
+            'media.*' => 'nullable|file',
             'status' => 'nullable|string',
         ]);
 
         $post = Post::find($id);
         $post->caption = $request->get('caption');
         $post->status = $request->get('status', 'active');
+
         $uploadsPath = public_path('uploads');
         if (!file_exists($uploadsPath)) {
             mkdir($uploadsPath, 0777, true);
         }
 
         if ($request->hasFile('media')) {
-            $file = $request->file('media');
-            $fileName = time() . '.' . $file->getClientOriginalExtension();
-            $file->move($uploadsPath, $fileName);
-            $post->media = $fileName;
+            $media = [];
+            foreach ($request->file('media') as $file) {
+                $fileName = time() . '_' . $file->getClientOriginalName();
+                $file->move($uploadsPath, $fileName);
+                $media[] = $fileName;
+            }
+            $post->media = implode(',', $media);
         }
 
         $post->save();
@@ -92,6 +102,15 @@ class PostController extends Controller
     public function destroy($id)
     {
         $post = Post::find($id);
+        // Delete media files
+        $media = explode(',', $post->media);
+        foreach ($media as $file) {
+            $filePath = public_path('uploads/' . $file);
+            if (file_exists($filePath)) {
+                @unlink($filePath);
+            }
+        }
+        // Delete post
         $post->delete();
 
         return redirect()->route('posts.index')->with('success', 'Post deleted successfully.');

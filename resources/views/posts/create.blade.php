@@ -33,8 +33,8 @@
                                     class="col-md-4 col-form-label text-md-right">{{ __('Media') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="media" type="file"
-                                        class="form-control-file @error('media') is-invalid @enderror" name="media">
+                                    <input id="media" type="file" name="media[]" multiple="multiple"
+                                        class="form-control-file @error('media') is-invalid @enderror">
 
                                     @error('media')
                                         <span class="invalid-feedback" role="alert">
