@@ -22,7 +22,7 @@ class PostController extends Controller
     {
         $request->validate([
             'caption' => 'nullable|string',
-            'media' => 'nullable|file|mimes:jpeg,png,mp4|max:2048', // Add file validation rules
+            'media' => 'nullable|file',
             'status' => 'nullable|string',
         ]);
 
@@ -52,7 +52,7 @@ class PostController extends Controller
     {
         $request->validate([
             'caption' => 'nullable|string',
-            'media' => 'nullable|file|mimes:jpeg,png,mp4|max:2048', // Add file validation rules
+            'media' => 'nullable|file|mimes:jpeg,png,mp4', // Add file validation rules
             'status' => 'nullable|string',
         ]);
 

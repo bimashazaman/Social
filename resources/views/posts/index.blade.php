@@ -9,7 +9,12 @@
                     <a href="{{ route('posts.show', $post) }}">
                         <div class="card mb-4">
                             @if ($post->media)
-                                @if (Str::endsWith($post->media, '.mp4'))
+                                @if (Str::endsWith($post->media, '.mp4') ||
+                                        Str::endsWith($post->media, '.mov') ||
+                                        Str::endsWith($post->media, '.avi') ||
+                                        Str::endsWith($post->media, '.wmv') ||
+                                        Str::endsWith($post->media, '.flv') ||
+                                        Str::endsWith($post->media, '.mkv'))
                                     <video controls class="card-img-top">
                                         <source src="{{ asset('uploads/' . $post->media) }}" type="video/mp4">
                                     </video>
