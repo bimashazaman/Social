@@ -88,4 +88,61 @@ class User extends Authenticatable
     {
         return $this->comments->count();
     }
+
+    //friends
+    public function friends()
+    {
+        return $this->belongsToMany(User::class, 'friends', 'user_id', 'friend_id');
+    }
+
+    public function friendOf()
+    {
+        return $this->belongsToMany(User::class, 'friends', 'friend_id', 'user_id');
+    }
+
+    public function friendsWith(User $user)
+    {
+        return (bool) $this->friends()->where('friend_id', $user->id)->count();
+    }
+
+    public function friendOfWith(User $user)
+    {
+        return (bool) $this->friendOf()->where('user_id', $user->id)->count();
+    }
+
+    public function friendRequestPending(User $user)
+    {
+        return (bool) $this->friendOf()->where('user_id', $user->id)->where('accepted', false)->count();
+    }
+
+    public function friendRequestReceived(User $user)
+    {
+        return (bool) $this->friends()->where('friend_id', $user->id)->where('accepted', false)->count();
+    }
+
+    public function addFriend(User $user)
+    {
+        $this->friends()->attach($user->id);
+    }
+
+    public function acceptFriendRequest(User $user)
+    {
+        $this->friendOf()->where('user_id', $user->id)->update(['accepted' => true]);
+    }
+
+    public function deleteFriend(User $user)
+    {
+        $this->friends()->detach($user->id);
+        $this->friendOf()->detach($user->id);
+    }
+
+    public function getFriendsCountAttribute()
+    {
+        return $this->friends->count();
+    }
+
+    public function getFriendOfCountAttribute()
+    {
+        return $this->friendOf->count();
+    }
 }

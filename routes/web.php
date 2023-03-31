@@ -48,6 +48,9 @@ Route::group(['middleware' => ['auth']], function () {
     //likes
     Route::post('/like/{post_id}', [App\Http\Controllers\LikesController::class, 'like'])->name('posts.likes');
     Route::post('/unlike/{post_id}', [App\Http\Controllers\LikesController::class, 'unlike'])->name('posts.unlike');
+
+    //profile
+    Route::get('/profile/{id}', [App\Http\Controllers\ProfileController::class, 'index'])->name('profile.index');
 });
 
 

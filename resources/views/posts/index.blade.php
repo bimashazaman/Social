@@ -13,13 +13,16 @@
                             <div class="d-flex align-items-center justify-content-between">
                                 <div class="d-flex align-items-center">
                                     <div class="pr-3">
-                                        <img src=@if ($post->user->avatar) "{{ $post->user->avatar }}"
-                                        @else "https://ui-avatars.com/api/?name={{ $post->user->name }}&background=0D8ABC&color=fff" @endif
-                                            class="rounded-circle" width="50" height="50" alt="">
+                                        <a href="{{ route('profile.index', $post->user->id) }}">
+                                            <img src=@if ($post->user->avatar) "{{ $post->user->avatar }}"
+                                        @else "https://ui-avatars.com/api/?name={{ $post->user->name }}&&background=0D8ABC&color=fff" @endif
+                                                class="rounded-circle" width="50" height="50" alt="">
+                                        </a>
                                     </div>
                                     <div>
                                         <div class="font-weight-bold">
-                                            <a href="" class="text-decoration-none"
+                                            <a href="{{ route('profile.index', $post->user->id) }}"
+                                                class="text-decoration-none"
                                                 style='font-size: 1.1rem; margin-left: 10px; color: #3ABEFE;'>
                                                 <span>{{ $post->user->username }}</span>
                                             </a>
