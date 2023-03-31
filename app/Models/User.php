@@ -29,12 +29,63 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
+
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
+
+    public function likedBy(User $user)
+    {
+        return $this->likes->contains('user_id', $user->id);
+    }
+
+    public function like(User $user)
+    {
+        if ($this->likedBy($user)) {
+            return;
+        }
+
+        $this->likes()->create([
+            'user_id' => $user->id,
+        ]);
+    }
+
+    public function unlike(User $user)
+    {
+        $this->likes()->where('user_id', $user->id)->delete();
+    }
+
+    public function toggleLike(User $user)
+    {
+        if ($this->likedBy($user)) {
+            return $this->unlike($user);
+        }
+
+        return $this->like($user);
+    }
+
+    public function getLikesCountAttribute()
+    {
+        return $this->likes->count();
+    }
+
+    public function getCommentsCountAttribute()
+    {
+        return $this->comments->count();
+    }
 }

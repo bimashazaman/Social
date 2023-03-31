@@ -10,7 +10,16 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::latest()->paginate(50);
-        return view('posts.index', compact('posts'));
+        // if the user is logged in, we will pass the posts to the view
+
+        if (
+            auth()->check()
+            && auth()->user()->role == 'user'
+        ) {
+            return view('posts.index', compact('posts'));
+        } else {
+            return view('auth.login');
+        }
     }
 
     public function create()
