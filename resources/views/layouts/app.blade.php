@@ -96,20 +96,6 @@
                                 style="width: 250px; background-color: #0E121C; color: #fff; border: none; border-radius: 20px; height: 45px;">
                             <i class="fas fa-search"
                                 style="color: #fff; font-size: 20px; margin-left: 10px; cursor: pointer; margin-top:10px"></i>
-
-                            {{-- <li class="nav-item dropdown">
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                        onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li> --}}
                         @endguest
                     </ul>
                 </div>

@@ -5,6 +5,27 @@
         <div class="row">
             <div class="col-md-8 mx-auto">
                 <h1 class="mb-4">Posts</h1>
+                <div class="card mb-3 rounded-lg">
+
+                    <div class=" d-flex">
+                        <div class="pr-3">
+                            <img src=@if (auth()->user()->avatar) "{{ auth()->user()->profile->profileImage() }}" @else
+                            "https://www.gravatar.com/avatar/{{ md5(auth()->user()->email) }}?d=mp" @endif
+                                alt="avatar" class="rounded-circle w-100" style="max-width: 50px;">
+                        </div>
+                        <div>
+                            <div class="font-weight-bold">
+                                <a href="" class="text-decoration-none"
+                                    style='font-size: 1.1rem; margin-left: 10px; color: #3ABEFE;'>
+                                    <span>{{ auth()->user()->username }}</span>
+                                </a>
+                            </div>
+                            <div style="font-size: 0.8rem; margin-left: 10px;  color: #3ABEFE;">
+                                {{ auth()->user()->created_at->diffForHumans() }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 @foreach ($posts as $post)
                     <div class="card mb-3 rounded-lg" style="background-color: #141A29; padding: 15px;">
                         <div class="card-header">
