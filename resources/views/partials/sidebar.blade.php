@@ -5,7 +5,7 @@
         {{ asset('logo/default.jpg') }} @endif
             class="rounded-circle" style=" height: 50px; width: 50px;" alt="">
         <div class="d-inline-block" style=" margin-left: 10px;">
-            {{ auth()->user()->name }}
+            {{ auth()->user()->username }}
         </div>
     </div>
 @endauth
