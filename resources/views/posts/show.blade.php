@@ -4,7 +4,28 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 mx-auto">
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <div class="d-flex align-items-center mb-3">
+                    <div>
+                        <a href="{{ route('profile.index', $post->user->id) }}">
+                            <img src=@if ($post->user->avatar) "{{ $post->user->avatar }}"
+                                        @else "https://ui-avatars.com/api/?name={{ $post->user->name }}&&background=0D8ABC&color=fff" @endif
+                                class="rounded-circle" width="50" height="50" alt="">
+                        </a>
+                    </div>
+                    <div class="ms-3">
+                        {{ $post->user->name }}
+                    </div>
+                </div>
+                <div class="m-2">
+                    {{ $post->caption }}
+                </div>
                 <div class="card mb-4">
+
                     @if ($post->media)
                         @if (Str::endsWith($post->media, '.mp4') ||
                                 Str::endsWith($post->media, '.mov') ||
@@ -29,6 +50,11 @@
                         </p>
                     </div>
                 </div>
+                @include('posts.partials.postActions', ['post' => $post])
+                @include('comments.partials.show', [
+                    'comments' => $post->comments,
+                    'post_id' => $post->id,
+                ])
             </div>
         </div>
     </div>

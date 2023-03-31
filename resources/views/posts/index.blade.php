@@ -66,10 +66,11 @@
                                 @endif
                             </div>
                         </div>
-                        <div class="card-body">
-                            <h5 class="card-title">{{ $post->caption }}</h5>
-                        </div>
-                        <a href="{{ route('posts.show', $post) }}">
+                        <a href="{{ route('posts.show', $post) }}" class="text-decoration-none text-white">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $post->caption }}</h5>
+                            </div>
+
                             @if ($post->media)
                                 @if (Str::endsWith($post->media, '.mp4') ||
                                         Str::endsWith($post->media, '.mov') ||
