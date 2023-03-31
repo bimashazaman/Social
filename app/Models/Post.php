@@ -66,4 +66,10 @@ class Post extends Model
     {
         return $this->comments->count();
     }
+
+    //relationship with comment
+    public function comment()
+    {
+        return $this->hasMany(Comment::class);
+    }
 }

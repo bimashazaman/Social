@@ -34,13 +34,11 @@ class PostController extends Controller
             'media.*' => 'nullable|file',
             'status' => 'nullable|string',
         ]);
-
         $post = new Post([
             'caption' => $request->get('caption'),
             'status' => $request->get('status', 'active'),
             'user_id' => auth()->user()->id,
         ]);
-
         $uploadsPath = public_path('uploads');
         if (!file_exists($uploadsPath)) {
             mkdir($uploadsPath, 0777, true);
@@ -55,9 +53,7 @@ class PostController extends Controller
             }
             $post->media = implode(',', $media);
         }
-
         $post->save();
-
         return redirect()->route('posts.index')->with('success', 'Post created successfully.');
     }
 
@@ -70,17 +66,24 @@ class PostController extends Controller
             'media.*' => 'nullable|file',
             'status' => 'nullable|string',
         ]);
-
         $post = Post::find($id);
         $post->caption = $request->get('caption');
         $post->status = $request->get('status', 'active');
-
         $uploadsPath = public_path('uploads');
         if (!file_exists($uploadsPath)) {
             mkdir($uploadsPath, 0777, true);
         }
 
         if ($request->hasFile('media')) {
+            // Delete old media files
+            $media = explode(',', $post->media);
+            foreach ($media as $file) {
+                $filePath = public_path('uploads/' . $file);
+                if (file_exists($filePath)) {
+                    @unlink($filePath);
+                }
+            }
+            // Upload new media files
             $media = [];
             foreach ($request->file('media') as $file) {
                 $fileName = time() . '_' . $file->getClientOriginalName();
@@ -89,9 +92,7 @@ class PostController extends Controller
             }
             $post->media = implode(',', $media);
         }
-
         $post->save();
-
         return redirect()->route('posts.index')->with('success', 'Post updated successfully.');
     }
 
