@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -37,6 +38,12 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/posts/{id}/edit', [PostController::class, 'edit'])->name('posts.edit');
     Route::put('/posts/{id}', [PostController::class, 'update'])->name('posts.update');
     Route::delete('/posts/{id}', [PostController::class, 'destroy'])->name('posts.destroy');
+
+
+    //comments
+    Route::get('/comments/{post_id}', [CommentController::class, 'index'])->name('comments.index');
+    Route::post('/comments/store/{post_id}', [CommentController::class, 'store'])->name('comments.store');
+    Route::delete('/comments/{id}', [CommentController::class, 'destroy'])->name('comments.destroy');
 });
 
 

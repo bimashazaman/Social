@@ -13,9 +13,9 @@
                             <div class="d-flex align-items-center justify-content-between">
                                 <div class="d-flex align-items-center">
                                     <div class="pr-3">
-                                        <img src=@if ($post->user->avatar) "{{ $post->user->profile->profileImage() }}" @else
-                                        "https://www.gravatar.com/avatar/{{ md5($post->user->email) }}?d=mp" @endif
-                                            alt="avatar" class="rounded-circle w-100" style="max-width: 50px;">
+                                        <img src=@if ($post->user->avatar) "{{ $post->user->avatar }}"
+                                        @else "https://ui-avatars.com/api/?name={{ $post->user->name }}&background=0D8ABC&color=fff" @endif
+                                            class="rounded-circle" width="50" height="50" alt="">
                                     </div>
                                     <div>
                                         <div class="font-weight-bold">
@@ -24,7 +24,7 @@
                                                 <span>{{ $post->user->username }}</span>
                                             </a>
                                         </div>
-                                        <div style="font-size: 0.8rem; margin-left: 10px;  color: #3ABEFE;">
+                                        <div style="font-size: 0.8rem; margin-left: 10px;  color: #9da1a2;">
                                             {{ $post->created_at->diffForHumans() }}
                                         </div>
                                     </div>
@@ -87,7 +87,7 @@
                         <div class="d-flex align-items-center justify-content-between w-100 mb-2 mt-3">
                             <div class="d-flex align-items-center w-100 justify-content-around">
                                 <div class="pr-3">
-                                    <a href="{{ route('posts.show', $post) }}" class="text-decoration-none"
+                                    <a href="{{ route('comments.index', $post) }}" class="text-decoration-none"
                                         style="font-family: 'Russo One', sans-serif; font-size: 1rem; margin-left: 10px; color: #3ABEFE;">
                                         3 Comments
                                         <i class="far fa-comment"></i>

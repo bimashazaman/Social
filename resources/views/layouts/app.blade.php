@@ -18,7 +18,7 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     {{-- <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet"> --}}
-    <link href="https://fonts.cdnfonts.com/css/russo-one" rel="stylesheet">
+    {{-- <link href="https://fonts.cdnfonts.com/css/russo-one" rel="stylesheet"> --}}
 
 
     <!-- Scripts -->

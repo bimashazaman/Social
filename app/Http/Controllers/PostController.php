@@ -9,7 +9,7 @@ class PostController extends Controller
 {
     public function index()
     {
-        $posts = Post::latest()->paginate(50);
+        $posts = Post::latest()->paginate(60);
         // if the user is logged in, we will pass the posts to the view
 
         if (
@@ -31,7 +31,7 @@ class PostController extends Controller
     {
         $request->validate([
             'caption' => 'nullable|string',
-            'media.*' => 'nullable|file',
+            'media.*' => 'nullable|file|max:10000',
             'status' => 'nullable|string',
         ]);
         $post = new Post([

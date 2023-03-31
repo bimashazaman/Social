@@ -1,9 +1,9 @@
 <div class="card mb-3 rounded-lg" style="background-color: #141A29; padding: 15px;">
     <div class="d-flex w-100 ">
         <div class="pr-3 py-3">
-            <img src=@if (auth()->user()->avatar) "{{ auth()->user()->profile->profileImage() }}" @else
-                            "https://www.gravatar.com/avatar/{{ md5(auth()->user()->email) }}?d=mp" @endif
-                alt="avatar" class="rounded-circle w-100" style="max-width: 50px;">
+            <img src=@if (auth()->user()->avatar) "{{ $post->user->avatar }}"
+                                        @else "https://ui-avatars.com/api/?name={{ auth()->user()->name }}&background=0D8ABC&color=fff" @endif
+                class="rounded-circle" width="50" height="50" alt="">
         </div>
         <form action="{{ route('posts.store') }}" method="POST" enctype="multipart/form-data" class="w-100">
             @csrf
