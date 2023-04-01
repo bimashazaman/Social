@@ -24,7 +24,7 @@
          </p>
          @if (!Auth::guest())
              @if (auth()->user()->id == $user->id)
-                 <a href="{{ route('profile.edit', $user->id) }}"
+                 <a href="{{ route('profiles.edit', $user->id) }}"
                      style="background-color: #0D8ABC; border: none; color: white; padding: 10px 10px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; border-radius: 15px;">Edit
                      Profile</a>
              @else

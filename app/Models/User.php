@@ -89,24 +89,79 @@ class User extends Authenticatable
         return $this->comments->count();
     }
 
+
     public function friends()
     {
-        return $this->belongsToMany(User::class, 'friends', 'user_id', 'friend_id')->withTimestamps();
+        return $this->belongsToMany(User::class, 'friends', 'user_id', 'friend_id')
+            ->withTimestamps();
     }
 
-    /**
-     * Get the friend requests sent by the user.
-     */
     public function sentFriendRequests()
     {
-        return $this->hasMany(FriendRequest::class, 'user_id');
+        return $this->belongsToMany(User::class, 'friend_requests', 'user_id', 'friend_id')
+            ->withTimestamps();
     }
 
-    /**
-     * Get the friend requests received by the user.
-     */
     public function receivedFriendRequests()
     {
-        return $this->hasMany(FriendRequest::class, 'friend_id');
+        return $this->belongsToMany(User::class, 'friend_requests', 'friend_id', 'user_id')
+            ->withTimestamps();
+    }
+
+    public function addFriend(User $user)
+    {
+        if ($this->id === $user->id) {
+            return false;
+        }
+
+        if ($this->friends->contains($user)) {
+            return false;
+        }
+
+        if ($this->sentFriendRequests->contains($user)) {
+            return false;
+        }
+
+        if ($this->receivedFriendRequests->contains($user)) {
+            return false;
+        }
+
+        $this->sentFriendRequests()->attach($user->id);
+
+        return true;
+    }
+
+    public function acceptFriendRequest(User $user)
+    {
+        if ($this->id === $user->id) {
+            return false;
+        }
+
+        if (!$this->receivedFriendRequests->contains($user)) {
+            return false;
+        }
+
+        $this->receivedFriendRequests()->updateExistingPivot($user->id, ['accepted' => true]);
+
+        $this->friends()->attach($user->id);
+
+        return true;
+    }
+
+    public function removeFriend(User $user)
+    {
+        if ($this->id === $user->id) {
+            return false;
+        }
+
+        if (!$this->friends->contains($user)) {
+            return false;
+        }
+
+        $this->friends()->detach($user->id);
+
+        $user->friends()->detach($this->id);
+
+        return true;
     }
 }
