@@ -1,6 +1,5 @@
 @extends('layouts.app')
 @section('content')
-    {{ dd($posts) }}
     <div class="container">
         <div class="row">
             <div class="">
@@ -31,5 +30,16 @@
                 </center>
             </div>
         </div>
+
+
+        <div>
+            <div class="card">
+
+            </div>
+            @foreach ($posts as $post)
+                {{ $post->caption }}
+            @endforeach
+        </div>
+
     </div>
 @endsection

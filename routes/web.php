@@ -13,7 +13,9 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::post('/loginus', [App\Http\Controllers\Auth\LoginController::class, 'loginus']);
+//loginPost
+Route::post('/loginpost', [App\Http\Controllers\Auth\LoginController::class, 'loginPost'])->name('login.post');
+
 
 //Google
 Route::get('/login/google', [App\Http\Controllers\Auth\LoginController::class, 'redirectToGoogle'])->name('login.google');

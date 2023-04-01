@@ -25,7 +25,6 @@
                     {{ $post->caption }}
                 </div>
                 <div class="card mb-4">
-
                     @if ($post->media)
                         @if (Str::endsWith($post->media, '.mp4') ||
                                 Str::endsWith($post->media, '.mov') ||
