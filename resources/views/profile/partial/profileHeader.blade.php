@@ -28,10 +28,35 @@
                      style="background-color: #0D8ABC; border: none; color: white; padding: 10px 10px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; border-radius: 15px;">Edit
                      Profile</a>
              @else
-                 <a
-                     style="background-color: #0D8ABC; border: none; color: white; padding: 10px 10px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; border-radius: 15px;">
-                     Add Friend </a>
+                 @if (auth()->user()->friends->contains($user))
+                     <form action="{{ route('remove-friend', $user->id) }}" method="POST">
+                         @csrf
+                         <button type="submit"
+                             style="background-color: #0D8ABC; border: none; color: white; padding: 10px 10px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; border-radius: 15px;">Remove
+                             Friend
+                         </button>
+                     </form>
+                 @elseif (auth()->user()->sentFriendRequests->contains($user))
+                     <p>Friend request sent</p>
+                 @elseif (auth()->user()->receivedFriendRequests->contains($user))
+                     <form action="{{ route('accept-friend', $user->id) }}" method="POST">
+                         @csrf
+                         <button type="submit"
+                             style="background-color: #0D8ABC; border: none; color: white; padding: 10px 10px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; border-radius: 15px;">Accept
+                             Friend Request
+                         </button>
+                     </form>
+                 @else
+                     <form action="{{ route('add-friend', $user->id) }}" method="POST">
+                         @csrf
+                         <button type="submit"
+                             style="background-color: #0D8ABC; border: none; color: white; padding: 10px 10px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; border-radius: 15px;">Add
+                             Friend
+                         </button>
+                     </form>
+                 @endif
              @endif
          @endif
+
      </center>
  </div>

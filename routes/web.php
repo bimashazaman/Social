@@ -1,12 +1,10 @@
 <?php
 
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\FriendController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-
-
-
 
 
 
@@ -53,10 +51,16 @@ Route::group(['middleware' => ['auth']], function () {
 
     //profile
     Route::get('/profile/{id}', [App\Http\Controllers\ProfileController::class, 'index'])->name('profile.index');
-    Route::get('/profile/{id}/edit', [App\Http\Controllers\ProfileController::class, 'edit'])->name('profile.edit');
+    Route::get('/profile/{id}/edit', [App\Http\Controllers\ProfileController::class, 'edit'])->name('profiles.edit');
 
     //update user
     Route::put('/user/{id}', [App\Http\Controllers\UserController::class, 'update'])->name('users.update');
+
+
+
+    Route::post('/add-friend/{id}', [FriendController::class, 'addFriend'])->name('add-friend');
+    Route::post('/accept-friend/{id}', [FriendController::class, 'acceptFriend'])->name('accept-friend');
+    Route::post('/remove-friend/{id}', [FriendController::class, 'removeFriend'])->name('remove-friend');
 });
 
 

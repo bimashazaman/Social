@@ -22,5 +22,15 @@ class UserSeeder extends Seeder
             'address' => 'Colombo',
             'bio' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod'
         ]);
+
+        $user = \App\Models\User::create([
+            'name' => 'Bimasha Doe',
+            'email' => 'bimashaa@gmail.com',
+            'username' => 'bimashaa',
+            'password' => '12345678',
+            'phone' => '0712345678',
+            'address' => 'Colombo',
+            'bio' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod'
+        ]);
     }
 }
