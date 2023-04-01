@@ -37,15 +37,28 @@
                          </button>
                      </form>
                  @elseif (auth()->user()->sentFriendRequests->contains($user))
-                     <p>Friend request sent</p>
-                 @elseif (auth()->user()->receivedFriendRequests->contains($user))
-                     <form action="{{ route('accept-friend', $user->id) }}" method="POST">
+                     <form action="{{ route('cancel-friend-request', $user->id) }}" method="POST">
                          @csrf
-                         <button type="submit"
-                             style="background-color: #0D8ABC; border: none; color: white; padding: 10px 10px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; border-radius: 15px;">Accept
-                             Friend Request
-                         </button>
+                         <button type="submit" class="btn btn-danger">Cancel Friend Request</button>
                      </form>
+                 @elseif (auth()->user()->receivedFriendRequests->contains($user))
+                     <center>
+                         <div class="d-flex justify-content-center">
+                             <form action="{{ route('accept-friend', $user->id) }}" method="POST">
+                                 @csrf
+                                 <button type="submit"
+                                     style="background-color: #0D8ABC; border: none; color: white; padding: 10px 10px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; border-radius: 15px; margin-right:10px">Accept
+                                     Friend Request
+                                 </button>
+                             </form>
+                             <form action="{{ route('reject-friend-request', $user->id) }}" method="POST">
+                                 @csrf
+                                 <button type="submit"
+                                     style="background-color: #ca2222; border: none; color: white; padding: 10px 10px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; border-radius: 15px;">Reject
+                                     Friend Request</button>
+                             </form>
+                         </div>
+                     </center>
                  @else
                      <form action="{{ route('add-friend', $user->id) }}" method="POST">
                          @csrf

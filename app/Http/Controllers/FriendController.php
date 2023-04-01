@@ -83,4 +83,64 @@ class FriendController extends Controller
 
         return redirect()->back()->with('success', 'Friend removed successfully.');
     }
+
+    public function cancelFriendRequest(Request $request, $id)
+    {
+        $user = auth()->user();
+        $friend = User::findOrFail($id);
+
+        // Check if friend request is already sent
+        if (!$user->sentFriendRequests->contains($friend)) {
+            return redirect()->back()->with('error', 'No friend request sent to this user.');
+        }
+
+        // Delete the friend request
+        FriendRequest::where('user_id', $user->id)
+            ->where('friend_id', $friend->id)
+            ->delete();
+
+        return redirect()->back()->with('success', 'Friend request cancelled successfully.');
+    }
+
+    public function rejectFriendRequest(Request $request, $id)
+    {
+        $user = auth()->user();
+        $friend = User::findOrFail($id);
+
+        // Check if friend request is already received
+        if (!$user->receivedFriendRequests->contains($friend)) {
+            return redirect()->back()->with('error', 'No friend request received from this user.');
+        }
+
+        // Delete the friend request
+        FriendRequest::where('user_id', $friend->id)
+            ->where('friend_id', $user->id)
+            ->delete();
+
+        return redirect()->back()->with('success', 'Friend request rejected successfully.');
+    }
+
+    public function showFriends()
+    {
+        $user = auth()->user();
+        $friends = $user->friends;
+
+        return view('friends', compact('friends'));
+    }
+
+    public function showFriendRequests()
+    {
+        $user = auth()->user();
+        $friendRequests = $user->receivedFriendRequests;
+
+        return view('friend-requests', compact('friendRequests'));
+    }
+
+    public function showSentFriendRequests()
+    {
+        $user = auth()->user();
+        $friendRequests = $user->sentFriendRequests;
+
+        return view('sent-friend-requests', compact('friendRequests'));
+    }
 }
