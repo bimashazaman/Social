@@ -28,6 +28,16 @@
                      style="background-color: #0D8ABC; border: none; color: white; padding: 10px 10px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; border-radius: 15px;">Edit
                      Profile</a>
              @else
+                 <div class="d-flex justify-content-center m-3">
+                     <a href="{{ url('chatify', $user->id) }}" class="text-decoration-none"
+                         style="font-size: 1rem; color: #3ABEFE; margin-left: 10px;">
+                         <i class="fa fa-comment" aria-hidden="true" style=" color: #0D8ABC; margin-right: 10px">
+                             Chat
+                         </i>
+                     </a>
+
+
+                 </div>
                  @if (auth()->user()->friends->contains($user))
                      <form action="{{ route('remove-friend', $user->id) }}" method="POST">
                          @csrf

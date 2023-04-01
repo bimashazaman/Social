@@ -30,7 +30,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="">
+                            <a class="nav-link" href={{ url('chatify') }}>
                                 <i style=" color: #fff; font-size: 20px; margin-left: 10px; cursor: pointer; margin-top: 10px;"
                                     class="fas fa-envelope"></i>
                             </a>
