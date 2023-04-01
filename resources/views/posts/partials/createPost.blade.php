@@ -1,7 +1,7 @@
 <div class="card mb-3 rounded-lg" style="background-color: #141A29; padding: 15px;">
     <div class="d-flex w-100 ">
         <div class="pr-3 py-3">
-            <img src=@if (auth()->user()->avatar) "{{ $post->user->avatar }}"
+            <img src=@if (auth()->user()->avatar) "{{ asset('avatars/' . auth()->user()->avatar) }}"
                                         @else "https://ui-avatars.com/api/?name={{ auth()->user()->name }}&background=0D8ABC&color=fff" @endif
                 class="rounded-circle" width="50" height="50" alt="">
         </div>

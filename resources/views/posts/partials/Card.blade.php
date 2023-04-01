@@ -4,7 +4,7 @@
                <div class="d-flex align-items-center">
                    <div class="pr-3">
                        <a href="{{ route('profile.index', $post->user->id) }}">
-                           <img src=@if ($post->user->avatar) "{{ $post->user->avatar }}"
+                           <img src=@if ($post->user->avatar) {{ asset('avatars/' . $post->user->avatar) }}
                                         @else "https://ui-avatars.com/api/?name={{ $post->user->name }}&&background=0D8ABC&color=fff" @endif
                                class="rounded-circle" width="50" height="50" alt="">
                        </a>

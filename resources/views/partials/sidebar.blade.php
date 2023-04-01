@@ -1,7 +1,7 @@
 @auth
     <div class='m-3 position-fixed start-0 ' style='z-index: 1000; top: 70px;'>
         <a href="{{ route('profile.index', auth()->user()->id) }}">
-            <img src=@if (auth()->user()->avatar) "{{ $post->user->avatar }}"
+            <img src=@if (auth()->user()->avatar) "{{ asset('avatars/' . auth()->user()->avatar) }}"
                                         @else "https://ui-avatars.com/api/?name={{ auth()->user()->name }}&background=0D8ABC&color=fff" @endif
                 class="rounded-circle" width="50" height="50" alt="">
 

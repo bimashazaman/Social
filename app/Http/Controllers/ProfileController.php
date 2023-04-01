@@ -16,4 +16,10 @@ class ProfileController extends Controller
 
         return view('profile.index', compact('user', 'posts'));
     }
+
+    public function edit($user_id)
+    {
+        $user = User::find($user_id);
+        return view('profile.edit', compact('user'));
+    }
 }
