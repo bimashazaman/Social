@@ -30,9 +30,9 @@
                     </div>
                     <div>
                     </div>
-                    <div class="d-flex justify-content-between align-items-center mt-5">
+                    <div>
                         @foreach ($friends as $friend)
-                            <div class="d-flex justify-content-between align-items- w-100">
+                            <div class="d-flex justify-content-between align-items- w-100 mt-3">
                                 <div class="d-flex align-items-center">
                                     <img src=@if ($friend->avatar) {{ asset('avatars/' . $friend->avatar) }}
                                         @else "https://ui-avatars.com/api/?name={{ $friend->name }}&&background=0D8ABC&color=fff" @endif

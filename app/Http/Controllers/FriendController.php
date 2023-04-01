@@ -143,4 +143,35 @@ class FriendController extends Controller
 
         return view('sent-friend-requests.index', compact('friends'));
     }
+
+    //search friends
+    public function searchFriends(Request $request)
+    {
+        $user = auth()->user();
+        $friends = $user->friends;
+        $search = $request->get('search');
+        $friends = User::where('name', 'like', '%' . $search . '%')->get();
+        return view('search.index', compact('friends'));
+    }
+
+    //search friend requests
+    public function searchFriendRequests(Request $request)
+    {
+        $user = auth()->user();
+        $friends = $user->receivedFriendRequests;
+        $search = $request->get('search');
+        $friends = User::where('name', 'like', '%' . $search . '%')->get();
+        return view('friend-requests.index', compact('friends'));
+    }
+
+    //search sent friend requests
+
+    public function searchSentFriendRequests(Request $request)
+    {
+        $user = auth()->user();
+        $friends = $user->sentFriendRequests;
+        $search = $request->get('search');
+        $friends = User::where('name', 'like', '%' . $search . '%')->get();
+        return view('sent-friend-requests.index', compact('friends'));
+    }
 }

@@ -62,10 +62,13 @@
                                 </li>
                             @endif
                         @else
-                            <input type="text" class="form-control" placeholder="Search"
-                                style="width: 250px; background-color: #0E121C; color: #fff; border: none; border-radius: 20px; height: 45px;">
-                            <i class="fas fa-search"
-                                style="color: #fff; font-size: 20px; margin-left: 10px; cursor: pointer; margin-top:10px"></i>
+                            <form action="{{ route('search-friends') }}" method="GET" class="d-flex">
+                                <input type="text" class="form-control" placeholder="Search"
+                                    style="width: 250px; background-color: #0E121C; color: #fff; border: none; border-radius: 20px; height: 45px;"
+                                    name="search">
+                                <i class="fas fa-search"
+                                    style="color: #fff; font-size: 20px; margin-left: 10px; cursor: pointer; margin-top:10px"></i>
+                            </form>
                         @endguest
                     </ul>
                 </div>

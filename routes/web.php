@@ -68,6 +68,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/friends', [FriendController::class, 'showFriends'])->name('friends');
     Route::get('/friend-requests', [FriendController::class, 'showFriendRequests'])->name('friend-requests');
     Route::get('/sent-friend-requests', [FriendController::class, 'showSentFriendRequests'])->name('sent-friend-requests');
+
+    Route::get('/search-friends', [FriendController::class, 'searchFriends'])->name('search-friends');
+    Route::get('/search-friend-requests', [FriendController::class, 'searchFriendRequests'])->name('search-friend-requests');
+    Route::get('/search-sent-friend-requests', [FriendController::class, 'searchSentFriendRequests'])->name('search-sent-friend-requests');
 });
 
 
