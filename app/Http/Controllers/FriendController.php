@@ -125,7 +125,7 @@ class FriendController extends Controller
         $user = auth()->user();
         $friends = $user->friends;
 
-        return view('friends', compact('friends'));
+        return view('friends.index', compact('friends'));
     }
 
     public function showFriendRequests()
@@ -133,7 +133,7 @@ class FriendController extends Controller
         $user = auth()->user();
         $friendRequests = $user->receivedFriendRequests;
 
-        return view('friend-requests', compact('friendRequests'));
+        return view('friend-requests.index', compact('friendRequests'));
     }
 
     public function showSentFriendRequests()

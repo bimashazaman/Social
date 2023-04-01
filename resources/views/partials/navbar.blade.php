@@ -18,7 +18,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="">
+                            <a class="nav-link" href={{ route('friends') }}>
                                 <i style=" color: #fff; font-size: 20px; margin-left: 10px; cursor: pointer; margin-top: 10px;"
                                     class="fas fa-user-friends"></i>
                             </a>
