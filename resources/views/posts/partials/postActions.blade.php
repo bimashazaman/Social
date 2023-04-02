@@ -59,7 +59,6 @@
  </div>
 
  <div class="d-flex align-items-center px-2">
-     {{-- The first comment --}}
      @if ($post->comments->count() > 0)
          <div class="d-flex align-items-center">
              <div class="pr-3">
