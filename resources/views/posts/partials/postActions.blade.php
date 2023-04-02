@@ -1,8 +1,15 @@
+ <div>
+     <a href="{{ route('who-liked', $post->id) }}" class="text-decoration-none"
+         style="font-size: 1rem; color: #939494; margin-left: 10px;">
+         {{ $post->likes->count() }} people likes
+     </a>
+ </div>
+
  <div class="d-flex align-items-center justify-content-between w-100 mb-2 mt-3">
      <div class="d-flex align-items-center w-100 justify-content-around">
          <div class="pr-3">
              <a href="{{ route('comments.index', $post) }}" class="text-decoration-none"
-                 style="font-family: 'Russo One', sans-serif; font-size: 1rem; margin-left: 10px; color: #3ABEFE;">
+                 style="font-family: 'Russo One', sans-serif; font-size: 1.2rem; margin-left: 10px; color: #3ABEFE;">
                  {{ $post->comments->count() }}
                  <i class="far fa-comment"></i>
              </a>
@@ -17,15 +24,18 @@
                  @csrf
                  @method('POST')
                  <button type="submit" class="btn btn-link text-decoration-none p-0 m-0"
-                     onclick="saveScrollPosition()">
-                     <i class="far fa-heart"></i>
+                     style="font-size: 1.2rem; margin-left: 10px; color: #3ABEFE;" onclick="saveScrollPosition()">
+                     @if ($post->likes->contains('user_id', auth()->user()->id))
+                         <i class="fas fa-heart" style="color: #fe3a3a;"></i>
+                     @else
+                         <i class="far fa-heart"></i>
+                     @endif
                  </button>
              </form>
          </div>
          <div class="pr-3">
              <a href="{{ route('posts.show', $post) }}" class="text-decoration-none"
-                 style="font-family: 'Russo One', sans-serif; font-size: 1rem; margin-left: 10px; color: #3ABEFE;">
-                 3
+                 style="font-family: 'Russo One', sans-serif; font-size: 1.2rem; margin-left: 10px; color: #3ABEFE;">
                  <i class="far fa-paper-plane"></i>
              </a>
          </div>

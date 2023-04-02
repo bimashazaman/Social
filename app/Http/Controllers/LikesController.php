@@ -23,4 +23,10 @@ class LikesController extends Controller
         $like->delete();
         return redirect()->back();
     }
+
+    public function whoLiked($id)
+    {
+        $likes = Likes::where('post_id', $id)->get();
+        return view('likes.whoLiked', compact('likes'));
+    }
 }

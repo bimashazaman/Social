@@ -72,6 +72,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/search-friends', [FriendController::class, 'searchFriends'])->name('search-friends');
     Route::get('/search-friend-requests', [FriendController::class, 'searchFriendRequests'])->name('search-friend-requests');
     Route::get('/search-sent-friend-requests', [FriendController::class, 'searchSentFriendRequests'])->name('search-sent-friend-requests');
+
+
+    //who liked
+    Route::get('/who-liked/{id}', [App\Http\Controllers\LikesController::class, 'whoLiked'])->name('who-liked');
 });
 
 
