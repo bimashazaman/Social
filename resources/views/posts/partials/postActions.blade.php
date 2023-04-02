@@ -16,10 +16,7 @@
                  {{ $post->likes->count() }} people likes
              </a>
          @else
-             <a href="{{ route('who-liked', $post->id) }}" class="text-decoration-none"
-                 style="font-size: 0.8rem; color: #939494; margin-left: 10px;">
-                 Be the first to like this post
-             </a>
+             <div></div>
          @endif
      @endif
  </div>
@@ -54,7 +51,7 @@
          </div>
          <div class="pr-3">
              <a href="{{ route('posts.show', $post) }}" class="text-decoration-none"
-                 style="font-family: 'Russo One', sans-serif; font-size: 1.2rem; margin-left: 10px; color: #3ABEFE;">
+                 style=" font-size: 1.2rem; margin-left: 10px; color: #3ABEFE;">
                  <i class="far fa-paper-plane"></i>
              </a>
          </div>
