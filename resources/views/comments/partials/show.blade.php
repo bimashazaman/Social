@@ -2,7 +2,7 @@
                     @foreach ($comments as $comment)
                         <div style='background-color: #141A29;' class="card p-3 m-3">
                             <div class="d-flex"><img
-                                    src=@if ($comment->user->avatar) {{ $comment->user->avatar }} @else
+                                    src=@if ($comment->user->avatar) {{ asset('avatars/' . $comment->user->avatar) }} @else
                                 https://ui-avatars.com/api/?name={{ $comment->user->name }}&background=0D8ABC&color=fff @endif
                                     class="mr-3 rounded-circle" alt="{{ $comment->user->name }}'s profile picture"
                                     width="64">

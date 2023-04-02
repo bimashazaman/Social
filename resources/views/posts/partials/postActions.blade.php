@@ -1,8 +1,27 @@
  <div>
-     <a href="{{ route('who-liked', $post->id) }}" class="text-decoration-none"
-         style="font-size: 1rem; color: #939494; margin-left: 10px;">
-         {{ $post->likes->count() }} people likes
-     </a>
+     @if ($post->likes->contains('user_id', auth()->user()->id))
+         <a href="{{ route('who-liked', $post->id) }}" class="text-decoration-none"
+             style="font-size: 0.8rem; color: #939494; margin-left: 10px;">
+             <i class="fas fa-thumbs-up" style="color: #0D8ABC; margin-right: 10px"></i>
+             @if ($post->likes->count() > 1)
+                 You and {{ $post->likes->count() - 1 }} other people
+             @else
+                 {{ $post->likes->count() }} person
+             @endif
+         </a>
+     @else
+         @if ($post->likes->count() > 0)
+             <a href="{{ route('who-liked', $post->id) }}" class="text-decoration-none"
+                 style="font-size: 0.8rem; color: #939494; margin-left: 10px;">
+                 {{ $post->likes->count() }} people likes
+             </a>
+         @else
+             <a href="{{ route('who-liked', $post->id) }}" class="text-decoration-none"
+                 style="font-size: 0.8rem; color: #939494; margin-left: 10px;">
+                 Be the first to like this post
+             </a>
+         @endif
+     @endif
  </div>
 
  <div class="d-flex align-items-center justify-content-between w-100 mb-2 mt-3">
@@ -40,4 +59,30 @@
              </a>
          </div>
      </div>
+ </div>
+
+ <div class="d-flex align-items-center px-2">
+     {{-- The first comment --}}
+     @if ($post->comments->count() > 0)
+         <div class="d-flex align-items-center">
+             <div class="pr-3">
+                 <a href="{{ route('profile.index', $post->comments->first()->user->id) }}">
+                     <img src=@if ($post->comments->first()->user->avatar) {{ asset('avatars/' . $post->comments->first()->user->avatar) }}
+                                    @else "https://ui-avatars.com/api/?name={{ $post->comments->first()->user->name }}&&background=0D8ABC&color=fff" @endif
+                         class="rounded-circle" width="30" height="30" alt="">
+                 </a>
+             </div>
+             <div>
+                 <div class="font-weight-bold">
+                     <a href="{{ route('profile.index', $post->comments->first()->user->id) }}"
+                         class="text-decoration-none" style='font-size: 0.8rem; margin-left: 10px; color: #3ABEFE;'>
+                         <span>{{ $post->comments->first()->user->username }}</span>
+                     </a>
+                 </div>
+                 <div style="font-size: 0.8rem; margin-left: 10px;  color: #9da1a2;">
+                     {{ $post->comments->first()->comment }}
+                 </div>
+             </div>
+         </div>
+     @endif
  </div>
