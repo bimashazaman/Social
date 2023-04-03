@@ -52,10 +52,8 @@ class LoginController extends Controller
             'email' => 'required|email',
             'password' => 'required',
         ]);
-
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
-            // Authentication passed...
             return redirect()->intended('posts.index');
         } else {
             return redirect()->back()->with('error', 'Invalid credentials');
