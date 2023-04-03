@@ -34,4 +34,10 @@ class Comment extends Model
     {
         return $this->hasMany(CommentLikes::class);
     }
+
+    //isLikedByUser
+    public function isLikedByUser($user_id)
+    {
+        return $this->likes->where('user_id', $user_id)->count() > 0;
+    }
 }

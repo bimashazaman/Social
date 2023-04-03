@@ -9,10 +9,7 @@ class CommentLikes extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'user_id',
-        'comment_id',
-    ];
+    protected $guarded = [];
 
     public function user()
     {
@@ -27,5 +24,14 @@ class CommentLikes extends Model
     public function likedBy(User $user)
     {
         return $this->likes->contains('user_id', $user->id);
+    }
+
+    public function toggleLike(User $user)
+    {
+        if ($this->likedBy($user)) {
+            return $this->likes()->where('user_id', $user->id)->delete();
+        } else {
+            return $this->likes()->create(['user_id' => $user->id]);
+        }
     }
 }

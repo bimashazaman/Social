@@ -22,7 +22,9 @@
     <div id="app">
         @include('partials.navbar')
         <main class="py-4" style="background-color: #0E121C; color: #fff; min-height: 100vh;">
-            @include('partials.sidebar')
+            {{-- <div class=" hidden d-lg-block">
+                @include('partials.sidebar')
+            </div> --}}
             @yield('content')
         </main>
     </div>

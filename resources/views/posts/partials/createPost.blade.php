@@ -15,31 +15,31 @@
                             name="caption">
                     </div>
                     <div class="mt-2">
-                        <a href={{ route('posts.create') }}>
+                        <a href={{ route('posts.create') }} class=" text-decoration-none">
                             <button type="button" class="btn btn-sm btn-outline-secondary mr-2"
                                 style="color: #848586; font-size: 1.1rem; margin-right: 10px">
                                 <i class="far fa-images"></i> Images
                             </button>
                         </a>
-                        <a href={{ route('posts.create') }}>
+                        <a href={{ route('posts.create') }} class=" text-decoration-none">
                             <button type="button" class="btn btn-sm btn-outline-secondary mr-2"
                                 style="color: #848586; font-size: 1.1rem; margin-right: 10px">
                                 <i class="fas fa-video"></i> Video
                             </button>
                         </a>
-                        <a href={{ route('posts.create') }}>
+                        <a href={{ route('posts.create') }} class=" text-decoration-none">
                             <button type="button" class="btn btn-sm btn-outline-secondary mr-2"
                                 style="color: #848586; font-size: 1.1rem; margin-right: 10px">
                                 <i class="fas fa-map-marker-alt"></i> Location
                             </button>
                         </a>
-                        <a href={{ route('posts.create') }}>
+                        <a href={{ route('posts.create') }} class=" text-decoration-none">
                             <button type="button" class="btn btn-sm btn-outline-secondary mr-2"
                                 style="color: #848586; font-size: 1.1rem; margin-right: 10px">
                                 <i class="fas fa-users"></i> Tag Friends
                             </button>
                         </a>
-                        <a href={{ route('posts.create') }}>
+                        <a href={{ route('posts.create') }} class=" text-decoration-none">
                             <button type="button" class="btn btn-sm btn-outline-secondary mr-2"
                                 style="color: #848586; font-size: 1.1rem; margin-right: 10px">
                                 <i class="fas fa-calendar-alt"></i> Events

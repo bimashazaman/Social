@@ -9,11 +9,7 @@ class CommentReply extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'comment',
-        'user_id',
-        'comment_id',
-    ];
+    protected $guarded = [];
 
 
     public function user()

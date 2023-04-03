@@ -12,31 +12,31 @@
 
                     <ul class="navbar-nav me-auto justify-content-around w-100">
                         <li class="nav-item">
-                            <a href="{{ route('posts.index') }}">
+                            <a href="{{ route('posts.index') }}" class=" text-decoration-none">
                                 <i style=" color: #fff; font-size: 20px; margin-left: 10px; cursor: pointer; margin-top: 10px;"
                                     class="fas fa-home"></i>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href={{ route('friends') }}>
+                            <a class="nav-link" href={{ route('friends') }} class=" text-decoration-none">
                                 <i style=" color: #fff; font-size: 20px; margin-left: 10px; cursor: pointer; margin-top: 10px;"
                                     class="fas fa-user-friends"></i>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="">
+                            <a class="nav-link" href="" class=" text-decoration-none">
                                 <i style=" color: #fff; font-size: 20px; margin-left: 10px; cursor: pointer; margin-top: 10px;"
                                     class="fas fa-bell"></i>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href={{ url('chatify') }}>
+                            <a class="nav-link" href={{ url('chatify') }} class=" text-decoration-none">
                                 <i style=" color: #fff; font-size: 20px; margin-left: 10px; cursor: pointer; margin-top: 10px;"
                                     class="fas fa-envelope"></i>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="">
+                            <a class="nav-link" href="" class=" text-decoration-none">
                                 <i style=" color: #fff; font-size: 20px; margin-left: 10px; cursor: pointer; margin-top: 10px;"
                                     class="fas fa-cog"></i>
                             </a>

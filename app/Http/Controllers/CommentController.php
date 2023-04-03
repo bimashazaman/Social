@@ -78,4 +78,46 @@ class CommentController extends Controller
 
         return redirect()->back();
     }
+
+    public function reply(Request $request, $comment_id)
+    {
+        $request->validate([
+            'reply' => 'required',
+        ]);
+
+        $comment = Comment::find($comment_id);
+        $comment->replies()->create([
+            'reply' => $request->reply,
+            'user_id' => auth()->user()->id,
+            'post_id' => $comment->post_id,
+        ]);
+
+        return redirect()->back();
+    }
+
+    public function replyDestroy($id)
+    {
+        $reply = Comment::find($id);
+        $reply->delete();
+
+        return redirect()->back();
+    }
+
+    public function replyLike($id)
+    {
+        $reply = Comment::find($id);
+        $reply->likes()->create([
+            'user_id' => auth()->user()->id,
+        ]);
+
+        return redirect()->back();
+    }
+
+    public function replyUnlike($id)
+    {
+        $reply = Comment::find($id);
+        $reply->likes()->where('user_id', auth()->user()->id)->delete();
+
+        return redirect()->back();
+    }
 }

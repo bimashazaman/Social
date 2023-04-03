@@ -44,6 +44,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/comments/{post_id}', [CommentController::class, 'index'])->name('comments.index');
     Route::post('/comments/store/{post_id}', [CommentController::class, 'store'])->name('comments.store');
     Route::delete('/comments/{id}', [CommentController::class, 'destroy'])->name('comments.destroy');
+    //comments likes
+    Route::post('/comment/like/{comment_id}', [App\Http\Controllers\CommentController::class, 'like'])->name('comments.like');
+    Route::post('/comment/unlike/{comment_id}', [App\Http\Controllers\CommentController::class, 'unlike'])->name('comments.dislike');
 
     //likes
     Route::post('/like/{post_id}', [App\Http\Controllers\LikesController::class, 'like'])->name('posts.likes');
@@ -76,6 +79,14 @@ Route::group(['middleware' => ['auth']], function () {
 
     //who liked
     Route::get('/who-liked/{id}', [App\Http\Controllers\LikesController::class, 'whoLiked'])->name('who-liked');
+
+    // Comments
+
+    Route::delete('/comments/{id}', [CommentController::class, 'destroy'])->name('comments.destroy');
+    Route::post('/comments/{comment_id}/reply', [CommentController::class, 'reply'])->name('comments.reply');
+    Route::delete('/comments/reply/{id}', [CommentController::class, 'replyDestroy'])->name('comments.replyDestroy');
+    Route::post('/comments/reply/{id}/like', [CommentController::class, 'replyLike'])->name('comments.replyLike');
+    Route::delete('/comments/reply/{id}/unlike', [CommentController::class, 'replyUnlike'])->name('comments.replyUnlike');
 });
 
 
