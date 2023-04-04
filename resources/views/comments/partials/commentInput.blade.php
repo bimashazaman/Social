@@ -16,8 +16,7 @@
                               <div class="form-group px-3 w-100 d-flex">
                                   <textarea name="comment" id="comment"
                                       style="background-color: #141A29; color: #3ABEFE; border: 1px solid #757677; border-radius: 20px; width: 100%;"
-                                      class="px-3 py-2" placeholder="Type your comment">
-                                                 </textarea>
+                                      class="px-3 py-2" placeholder="Type your comment"></textarea>
                                   <button type="submit" class="btn btn-link p-0 fs-4"
                                       style="color: #3ABEFE; margin-left: 10px;">
                                       <i class="fas fa-paper-plane"></i>

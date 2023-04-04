@@ -47,7 +47,25 @@
                            </div>
                        </div>
                    @else
-                       <div></div>
+                       <div class="post-item" x-data="{ showOptions1: false }">
+                           <!-- Post content here -->
+                           <div class="options" @click.away="showOptions1 = false">
+                               <button @click="showOptions1 = !showOptions1" class="btn btn-sm btn-outline-secondary">
+                                   <i class="fas fa-ellipsis-h"></i>
+                               </button>
+                               <div class="options-menu  position-absolute  rounded   z-10"
+                                   style="background-color: #141A29; color: #3ABEFE;" x-show="showOptions1"
+                                   x-transition>
+                                   <form {{-- action="{{ route('posts.report', $post) }}" --}} method="POST">
+                                       @csrf
+                                       @method('POST')
+                                       <button type="submit" class="btn btn-sm btn-outline-secondary  m-2">
+                                           <i class="fas fa-flag"></i> Report
+                                       </button>
+                                   </form>
+                               </div>
+                           </div>
+                       </div>
                    @endif
                @endif
            </div>
