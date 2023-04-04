@@ -11,6 +11,15 @@
                 <div class="row">
                     <div class="col-md-8 mx-auto">
                         @include('profile.partial.profileEditForm')
+                        {{-- Logout --}}
+                        <center>
+                            <form action="{{ route('logout') }}" method="POST">
+                                @csrf
+                                <button type="submit" class="btn btn-danger w-75 mx-auto">
+                                    Logout</button>
+                            </form>
+                        </center>
+
                     </div>
                 </div>
             </div>
