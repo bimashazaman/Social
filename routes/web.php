@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Route;
 
 
 
-
 Auth::routes();
 
 //loginPost
@@ -83,12 +82,15 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/who-liked/{id}', [App\Http\Controllers\LikesController::class, 'whoLiked'])->name('who-liked');
 
     // Comments
-
     Route::delete('/comments/{id}', [CommentController::class, 'destroy'])->name('comments.destroy');
     Route::post('/comments/{comment_id}/reply', [CommentController::class, 'reply'])->name('comments.reply');
     Route::delete('/comments/reply/{id}', [CommentController::class, 'replyDestroy'])->name('comments.replyDestroy');
     Route::post('/comments/reply/{id}/like', [CommentController::class, 'replyLike'])->name('comments.replyLike');
     Route::delete('/comments/reply/{id}/unlike', [CommentController::class, 'replyUnlike'])->name('comments.replyUnlike');
+
+    //Settings index/id and update
+    Route::get('/settings/{id}', [App\Http\Controllers\SettingsController::class, 'index'])->name('settings.index');
+    Route::put('/settings/{id}', [App\Http\Controllers\SettingsController::class, 'update'])->name('settings.update');
 });
 
 

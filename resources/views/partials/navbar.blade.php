@@ -36,13 +36,11 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="" class=" text-decoration-none">
+                            <a class="nav-link" href={{ route('settings.index', Auth::user()->id) }}
+                                class=" text-decoration-none">
                                 <i style=" color: #fff; font-size: 20px; margin-left: 10px; cursor: pointer; margin-top: 10px;"
                                     class="fas fa-cog"></i>
                             </a>
-                        </li>
-                        <li style=" color: #fff; font-size: 20px; margin-left: 10px; cursor: pointer; margin-top: 10px;"
-                            class="nav-item">
                         </li>
                     </ul>
 
