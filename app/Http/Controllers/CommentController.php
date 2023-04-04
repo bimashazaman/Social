@@ -11,14 +11,20 @@ class CommentController extends Controller
 
     public function index($post_id)
     {
-        $comments = Comment::where('post_id', $post_id)->latest()->get();
+
+        $comments = Comment::latest()->where('post_id', $post_id)->latest()->paginate(60);
+
         $post = Post::find($post_id);
         return view('comments.index', compact('comments', 'post'));
     }
 
-    public function create()
+    public function create($post_id)
     {
-        return view('comments.index');
+        $comments = Comment::latest()->where('post_id', $post_id)->latest()->paginate(60);
+
+        $post = Post::find($post_id);
+
+        return view('comments.index', compact('comments', 'post'));
     }
 
     public function store(Request $request, $post_id)
@@ -57,6 +63,20 @@ class CommentController extends Controller
     {
         $comment = Comment::find($id);
         $comment->delete();
+
+        return redirect()->back();
+    }
+
+    //update comment
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'comment' => 'required',
+        ]);
+
+        $comment = Comment::find($id);
+        $comment->comment = $request->comment;
+        $comment->save();
 
         return redirect()->back();
     }
