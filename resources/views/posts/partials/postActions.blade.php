@@ -21,7 +21,7 @@
      @endif
  </div>
 
- <div class="d-flex align-items-center justify-content-between w-100 mb-2 mt-3">
+ <div class="d-flex align-items-center justify-content-between w-100 mb-2 mt-3" x-data="{ showPopup: false }">
      <div class="d-flex align-items-center w-100 justify-content-around">
          <div class="pr-3">
              <a href="{{ route('comments.index', $post) }}" class="text-decoration-none"
@@ -49,11 +49,35 @@
                  </button>
              </form>
          </div>
+
+
          <div class="pr-3">
-             <a href="{{ route('posts.show', $post) }}" class="text-decoration-none"
-                 style=" font-size: 1.2rem; margin-left: 10px; color: #3ABEFE;">
-                 <i class="far fa-paper-plane"></i>
-             </a>
+             <div class="text-decoration-none" style="font-size: 1.2rem; margin-left: 10px; color: #3ABEFE;">
+                 <i class="far fa-paper-plane" @click="showPopup = !showPopup" @click.away="showPopup = false"></i>
+             </div>
+
+         </div>
+
+     </div>
+     <div x-show="showPopup"
+         style="position: absolute; z-index: 10; margin-top: 60px; margin-left: 10px; width: 300px; right: 0">
+         <div class="card" style="margin-top: 50%">
+             {!! Share::page(route('posts.show', $post), $post->title, [
+                 'class' => 'btn btn-link text-decoration-none p-0 m-0',
+                 'style' => 'font-size: 1.3rem; margin-left: 10px; color: #3ABEFE;',
+             ])->facebook() !!} {!! Share::page(route('posts.show', $post), $post->title, [
+                 'class' => 'btn btn-link text-decoration-none p-0 m-0',
+                 'style' => 'font-size: 1.3rem; margin-left: 10px; color: #3ABEFE;',
+             ])->linkedin() !!}
+
+             {!! Share::page(route('posts.show', $post), $post->title, [
+                 'class' => 'btn btn-link text-decoration-none p-0 m-0',
+                 'style' => 'font-size: 1.3rem; margin-left: 10px; color: #3ABEFE;',
+             ])->twitter() !!}
+             {!! Share::page(route('posts.show', $post), $post->title, [
+                 'class' => 'btn btn-link text-decoration-none p-0 m-0',
+                 'style' => 'font-size: 1.3rem; margin-left: 10px; color: #3ABEFE;',
+             ])->whatsapp() !!}
          </div>
      </div>
  </div>
