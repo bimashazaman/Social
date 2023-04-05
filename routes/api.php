@@ -17,3 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+//RESTAPIs
+Route::post('register', [App\Http\Controllers\RESTAPIs\AuthRestApiController::class, 'register'])->name('api.register');
+Route::post('login', [App\Http\Controllers\RESTAPIs\AuthRestApiController::class, 'login'])->name('api.login');
+Route::post('logout', [App\Http\Controllers\RESTAPIs\AuthRestApiController::class, 'logout'])->name('api.logout');

@@ -19,7 +19,6 @@
                                     Logout</button>
                             </form>
                         </center>
-
                     </div>
                 </div>
             </div>

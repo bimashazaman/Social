@@ -6,7 +6,6 @@
 
             <div class="form-group row mt-2">
                 <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
-
                 <div class="col-md-12">
                     <input
                         style="background-color: #0E121C; color: white ;border:none; border-radius: 20px; padding: 10px"
@@ -22,13 +21,11 @@
 
             <div class="form-group row mt-2">
                 <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Email') }}</label>
-
                 <div class="col-md-12">
                     <input
                         style="background-color: #0E121C; color: white ;border:none; border-radius: 20px; padding: 10px"
                         id="email" type="email" class="form-control @error('email') is-invalid @enderror"
                         name="email" value="{{ old('email', $user->email) }}" autocomplete="email">
-
                     @error('email')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
